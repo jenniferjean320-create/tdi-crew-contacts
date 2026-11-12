@@ -32,6 +32,15 @@
   .injury h1{margin:0;font-size:30px;font-weight:900;letter-spacing:.06em;line-height:1.05}
   .injury p{margin:6px 0 0;font-size:17px;font-weight:700;line-height:1.25}
 
+  .jobinjury{margin:10px 0 0;background:#B81D26;border-radius:14px;padding:12px 12px 10px;text-align:center}
+  .jobinjury h3{margin:0 0 10px;font-size:15px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;line-height:1.2}
+  .jobinjury .person{margin-bottom:8px}
+  .jobinjury .person:last-child{margin-bottom:0}
+  .jobinjury .call,.jobinjury .txt{background:#fff;border-color:#fff;color:#000}
+  .jobinjury .role{color:#444}
+  .jobinjury .call:active,.jobinjury .txt:active{background:#e6e6e6}
+  .jobinjury .who{text-align:left}
+
   h2{margin:24px 2px 10px;font-size:15px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
   h2.lead{color:var(--lead)}
 
@@ -71,6 +80,10 @@
   <section class="injury">
     <h1>INJURY</h1>
     <p>Immediately contact your leader</p>
+  </section>
+  <section class="jobinjury">
+    <h3>Job injury &middot; Contact point for foreman / supervisor</h3>
+    <div id="injurycontacts"></div>
   </section>
   <p class="hint">Tap a name to call &middot; tap TEXT to message</p>
 
@@ -117,6 +130,11 @@
     ["Ariel Juetten","Rev. Operations","715.245.1139"]
   ];
 
+  var injury = [
+    ["Steve Peterson","Safety Director","621.767.2373"],
+    ["Work Partners","","800.359.5020"]
+  ];
+
   function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
   function digits(n){return n.replace(/\D/g,"")}
   function row(name, role, phone, cls){
@@ -130,6 +148,8 @@
       '<a class="txt" href="sms:+1'+d+'" aria-label="Text '+esc(name)+'">Text</a>' +
     '</div>';
   }
+  document.getElementById("injurycontacts").innerHTML =
+    injury.map(function(p){return row(p[0],p[1],p[2])}).join("");
   document.getElementById("leaders").innerHTML =
     leaders.map(function(p){return row(p[0],p[1],p[2],"leader")}).join("");
   document.getElementById("crew").innerHTML =
